@@ -12,7 +12,7 @@ namespace Application.Services
             _userRepository = userRepository;
         }
 
-        public async Task<Guid> CreateAsync(string name,  string email, string password)
+        public async Task<Guid> CreateAsync(string name,  string email)
         {
             var user = new User
             {
