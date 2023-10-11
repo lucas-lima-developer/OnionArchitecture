@@ -1,4 +1,5 @@
-﻿using Application.Services;
+﻿using Application.Queries;
+using Application.Services;
 using Domain.Entities;
 
 namespace API.Endpoints
@@ -31,6 +32,13 @@ namespace API.Endpoints
                 await userService.DelteUserAsync(id);
 
                 return Results.NoContent();
+            });
+
+            app.MapGet("api/users/{id}", async (Guid id, IGetUserByIdQueryHandler handler) =>
+            {
+                var user = await handler.Handler(id);
+
+                return user is null ? Results.NoContent() : Results.Ok(user);
             });
         }
     }
