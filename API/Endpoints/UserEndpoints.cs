@@ -1,4 +1,5 @@
 ﻿using Application.Services;
+using Domain.Entities;
 
 namespace API.Endpoints
 {
@@ -13,6 +14,16 @@ namespace API.Endpoints
                     request.Email);
 
                 return Results.Ok(userId);
+            });
+
+            app.MapPut("api/users/{id}", async (Guid id, User request, UserService userService) => 
+            {
+                if (id != request.Id)
+                    return Results.BadRequest();
+
+                await userService.UpdateUserAsync(id, request);
+
+                return Results.NoContent();
             });
         }
     }
