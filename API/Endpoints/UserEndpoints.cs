@@ -25,6 +25,13 @@ namespace API.Endpoints
 
                 return Results.NoContent();
             });
+
+            app.MapDelete("api/users/{id}", async (Guid id, UserService userService) =>
+            {
+                await userService.DelteUserAsync(id);
+
+                return Results.NoContent();
+            });
         }
     }
 }
