@@ -34,16 +34,16 @@ namespace API.Endpoints
                 return Results.NoContent();
             });
 
-            app.MapGet("api/users/{id}", async (Guid id, IGetUserByIdQueryHandler handler) =>
+            app.MapGet("api/users/{id}", async (Guid id, IGetUserByIdQueryHandler handle) =>
             {
-                var user = await handler.Handler(id);
+                var user = await handle.Handle(id);
 
                 return user is null ? Results.NoContent() : Results.Ok(user);
             });
 
-            app.MapGet("api/users", async (IGetUsersQueryHandler handler) =>
+            app.MapGet("api/users", async (IGetUsersQueryHandler handle) =>
             {
-                var users = await handler.Handle();
+                var users = await handle.Handle();
 
                 return users is null ? Results.NoContent() : Results.Ok(users);
             });
