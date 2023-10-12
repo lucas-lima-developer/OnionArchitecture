@@ -13,7 +13,7 @@ namespace Infrastructure.Queries
             _context = context;
         }
 
-        public async Task<UserResponse?> Handler(Guid id)
+        public async Task<UserResponse?> Handle(Guid id)
         {
             var userResponse = await _context
                 .Users

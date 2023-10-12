@@ -2,6 +2,6 @@
 {
     public interface IGetUserByIdQueryHandler
     {
-        Task<UserResponse?> Handler(Guid id);
+        Task<UserResponse?> Handle(Guid id);
     }
 }

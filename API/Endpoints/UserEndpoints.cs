@@ -40,6 +40,13 @@ namespace API.Endpoints
 
                 return user is null ? Results.NoContent() : Results.Ok(user);
             });
+
+            app.MapGet("api/users", async (IGetUsersQueryHandler handler) =>
+            {
+                var users = await handler.Handle();
+
+                return users is null ? Results.NoContent() : Results.Ok(users);
+            });
         }
     }
 }
